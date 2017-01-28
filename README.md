@@ -12,7 +12,7 @@ function myFunction($a, $b, $c, $d, $e, $f) {
 }
 ```
 
-and if you change it to be like this (you add a parameter and pass the parameters on multiple lines):
+and if you change it to be like this (you rename a parameter and pass the parameters on multiple lines):
 
 ```php
 <?php
@@ -29,7 +29,7 @@ $g
 }
 ```
 
-The `git diff` command will output something like this (the added parameter will not be visible because of the others parameters are now on another line) :
+The `git diff` command will output something like this (the rename of parameter will not be easily visible because of the others parameters are now on another line) :
 
 ![example-git-diff](doc/example-git-diff.png)
 
