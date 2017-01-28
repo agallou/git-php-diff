@@ -56,3 +56,7 @@ mv git-php-diff.phar ~/bin/git-php-diff
 ## Usage
 
 Just run the command `git php-diff`.
+
+## Licence
+
+git php diff is released under the MIT License. See the bundled LICENSE file for details.
