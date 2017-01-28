@@ -1,0 +1,17 @@
+{
+    "chmod": "0755",
+    "files": [
+        "vendor/bin/php-parse"
+    ],
+    "finder": [
+        {
+            "name": "*.php",
+            "exclude": [
+            ],
+            "in": "vendor"
+        }
+    ],
+    "main": "bin/git-php-diff",
+    "output": "git-php-diff.phar",
+    "stub": true
+}

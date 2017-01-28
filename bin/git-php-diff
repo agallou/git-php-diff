@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use PhpParser\Error;
+use PhpParser\ParserFactory;
+use Symfony\Component\Process\Process;
+
+if (!isset($_SERVER['argv'][1])) {
+    passthru('git config diff.phpAstDiff.textconv ' . $_SERVER['PHP_SELF']);
+    $topLevelDirectory = exec("git rev-parse --show-toplevel");
+    $attributesFile = $topLevelDirectory . '/.git/info/attributes';
+
+    $attribute = "*.php diff=phpAstDiff";
+
+    if (!is_file($attributesFile) || false === strpos(file_get_contents($attributesFile), $attribute)) {
+        file_put_contents($attributesFile, $attribute, FILE_APPEND);
+    }
+
+    $process = new Process('MAKEASTDIFF=1 git diff');
+    $process->setTty(true);
+    $process->run();
+} else {
+    $filename = $_SERVER['argv'][1];
+    $code = file_get_contents($filename);
+
+    if (getenv('MAKEASTDIFF') != 1) {
+        echo $code;
+        exit(0);
+    }
+
+    echo getmygid();
+
+    $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);
+  
+    try {
+        $stmts = $parser->parse($code);
+        $dumper = new PhpParser\NodeDumper(['dumpComments' => true]);
+        echo $dumper->dump($stmts), "\n";
+    } catch (Error $e) {
+        echo $filename . ' - Parse Error: ', $e->getMessage();
+    }
+}
