@@ -53,3 +53,6 @@ Rename and put it on a folder that is on your `PATH`.
 mv git-php-diff.phar ~/bin/git-php-diff
 ```
 
+## Usage
+
+Just run the command `git php-diff`.
