@@ -44,6 +44,7 @@ You will only see the changes that have a real impact on your code by making the
 Download the phar :
 
 ```bash
+wget https://github.com/agallou/git-php-diff/releases/download/v0.0.1/git-php-diff.phar
 ```
 
 Rename and put it on a folder that is on your `PATH`.
